@@ -35,9 +35,20 @@
 3. Uruchom test i zweryfikuj wiadomoœæ w konsoli.
 
 
+## Æwiczenie 7
+1. SprawdŸ czy `0.1 + 0.2 == 0.3` testem
+2. Po IsEqualTo(0.3) wciœnij kropkê i zobacz co podpowie Ci Visual Studio.
+3. Napisz test tak ¿eby przeszed³
+
+
+## Æwiczenie 8
+1. SprawdŸ czy `1.0 / 3.0 == 0.3333` testem
+2. Napisz test tak ¿eby przeszed³
+
+
 ---
 
-## Æwiczenie 7 - Kolekcje
+## Æwiczenie 9 - Kolekcje
 1. Przetestuj metodê `ProductComparer.CompareMonthlyRepayments()`
 2. ¯eby utworzyæ instancjê ProductComparer, musisz utworzyæ:
    - listê produktów po¿yczek (`LoanProduct`) - stwórz trzy unikalne
@@ -46,7 +57,7 @@
 4. SprawdŸ asercj¹ czy lista zwrócona przez `CompareMonthlyRepayments` zwraca tyle samo elementów ile mamy w liœcie LoadProduct (z punktu 2)
 
 
-## Æwiczenie 8 - Kolekcje
+## Æwiczenie 10 - Kolekcje
 1. Przetestuj metodê `ProductComparer.CompareMonthlyRepayments()`
 2. ¯eby utworzyæ instancjê ProductComparer, musisz utworzyæ:
    - listê produktów po¿yczek (`LoanProduct`) - stwórz trzy
@@ -55,7 +66,7 @@
 4. SprawdŸ asercj¹ czy lista zwrócona przez `CompareMonthlyRepayments` zwraca unikalne elementy
 
 
-## Æwiczenie 8 - Kolekcje
+## Æwiczenie 11 - Kolekcje
 1. Przetestuj metodê `ProductComparer.CompareMonthlyRepayments()`
 2. ¯eby utworzyæ instancjê ProductComparer, musisz utworzyæ:
    - listê produktów po¿yczek (`LoanProduct`) - stwórz trzy
@@ -65,7 +76,7 @@
 
 
 
-## Æwiczenie 8 - Kolekcje
+## Æwiczenie 12 - Kolekcje
 1. Przetestuj metodê `ProductComparer.CompareMonthlyRepayments()`
 2. ¯eby utworzyæ instancjê ProductComparer, musisz utworzyæ:
    - listê produktów po¿yczek (`LoanProduct`) - stwórz trzy
@@ -76,11 +87,31 @@
 
 ---
 
-## Æwiczenie 9 - £apanie wyj¹tków
+## Æwiczenie 13 - £apanie wyj¹tków
 1. Napisz test który z³apie wyj¹tek z klasy LoanTerm.
 2. Dla `LoanTerm(0)` powinniœmy otrzymaæ `ArgumentOutOfRangeException`
 
 
 ---
 
-## Æwiczenie 10 - Inne asercje
+## Æwiczenie 14 - Data Driven Tests
+1. Utwórz plik Data.csv (pamiêtaj o ustawieniu Copy to output directory) z takimi danymi
+```csv
+200000, 6.5, 30, 1264.14
+200000, 10, 30, 1755.14
+500000, 10, 30, 4387.86
+```
+2. Napisz kod w klasie `public class MonthlyRepaymentCsvData` który zwróci listê obiektów `TestCaseData` z danymi pobranymi z pliku .csv
+3. Napisz test który przetestuje przy u¿yciu generatora danych metodê `CalculateMonthlyRepayment()` z klasy `LoanRepaymentCalculator`
+
+PodpowiedŸ do testu:
+```charp
+var sut = new LoanRepaymentCalculator();
+
+var monthlyPayment = sut.CalculateMonthlyRepayment(
+                            new LoanAmount("USD", principal),
+                            interestRate,
+                            new LoanTerm(termInYears));
+
+Assert.That(monthlyPayment, Is.EqualTo(expectedMonthlyPayment));
+```

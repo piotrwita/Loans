@@ -68,6 +68,14 @@ namespace Loans.Tests
             Assert.That(a, Is.EqualTo(0.33).Within(10).Percent);
         }
 
+        [Test]
+        public void AnotherDouble()
+        {
+            double a = 0.1 + 0.2;
+
+            Assert.That(a, Is.EqualTo(0.3).Within(5).Percent);
+        }
+
 
         [Test]
         public void NotAllowZeroYears()
